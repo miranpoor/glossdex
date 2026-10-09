@@ -35,6 +35,9 @@ glossdex = "glossdex.cli:main"
 [project.urls]
 Homepage = "https://github.com/miranpoor/glossdex"
 Issues = "https://github.com/miranpoor/glossdex/issues"
+Source = "https://github.com/miranpoor/glossdex"
+Changelog = "https://github.com/miranpoor/glossdex/blob/main/CHANGELOG.md"
+DOI = "https://doi.org/10.5281/zenodo.23269314"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/glossdex"]

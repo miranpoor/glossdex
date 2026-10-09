@@ -9,6 +9,15 @@ authors:
     email: mehran@memoyad.com
     orcid: "https://orcid.org/0009-0008-2089-6509"
 version: 0.1.0
+doi: 10.5281/zenodo.23269314
+date-released: 2026-10-09
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23269314
+    description: All versions
+  - type: doi
+    value: 10.5281/zenodo.23269315
+    description: Version 0.1.0
 license: AGPL-3.0-or-later
 repository-code: "https://github.com/miranpoor/glossdex"
 keywords:

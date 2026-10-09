@@ -1,5 +1,7 @@
 # glossdex
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23269314.svg)](https://doi.org/10.5281/zenodo.23269314)
+
 **Glossed locally, indexed by meaning, gated by evidence.**
 
 glossdex is private semantic search over a folder of photos and documents. A local model
@@ -13,7 +15,7 @@ passages will answer from them. glossdex returns nothing when the collection has
 the query. It needs no training, no click logs and no relevance labels for your collection.
 Nothing leaves your machine.
 
-On the ten sample documents in [examples/sample-docs](examples/sample-docs):
+On the ten sample documents in [examples/sample-docs](https://github.com/miranpoor/glossdex/tree/main/examples/sample-docs):
 
 ```
 $ glossdex search examples/sample-docs "how much is the electricity bill" --describer text-only
@@ -36,13 +38,13 @@ $ glossdex search examples/sample-docs "mortgage statement" --describer text-onl
 On 40 sample photos, glossdex shows nothing for "a giraffe", while a fixed top-10 shows ten
 unrelated photos:
 
-![glossdex returns nothing for "a giraffe"; a fixed top-10 returns ten unrelated photos](docs/screenshot-nothing-found.png)
+![glossdex returns nothing for "a giraffe"; a fixed top-10 returns ten unrelated photos](https://raw.githubusercontent.com/miranpoor/glossdex/main/docs/screenshot-nothing-found.png)
 
-<sub>Photos: Open Images V7, CC BY 2.0; credits in [docs/SCREENSHOT_CREDITS.md](docs/SCREENSHOT_CREDITS.md).</sub>
+<sub>Photos: Open Images V7, CC BY 2.0; credits in [docs/SCREENSHOT_CREDITS.md](https://github.com/miranpoor/glossdex/blob/main/docs/SCREENSHOT_CREDITS.md).</sub>
 
 When there is an answer, it shows only the answer, and explains why:
 
-![Two results for "a little boy with a book", with each decision explained](docs/screenshot-results.png)
+![Two results for "a little boy with a book", with each decision explained](https://raw.githubusercontent.com/miranpoor/glossdex/main/docs/screenshot-results.png)
 
 ## Quick start (about 10 minutes)
 
@@ -50,7 +52,7 @@ You need Python 3.9+ and [Ollama](https://ollama.com/download).
 
 ```bash
 ollama pull embeddinggemma          # 622 MB, the embedding model
-pip install glossdex                # until the first release: pip install git+https://github.com/miranpoor/glossdex
+pip install glossdex
 glossdex doctor                     # checks Ollama and the models
 ```
 
@@ -131,7 +133,7 @@ The **strictness** control moves the band and scales the noise floor, headroom a
 together. At its loosest those three are off and only the band ratio (and any coverage-gap
 tightening) remains, so "show me more" reaches the ranked items.
 
-See [docs/architecture.md](docs/architecture.md) for the components and the adapter interfaces.
+See [docs/architecture.md](https://github.com/miranpoor/glossdex/blob/main/docs/architecture.md) for the components and the adapter interfaces.
 
 ## Python API
 
@@ -162,7 +164,7 @@ else:
 ```
 
 The number of passages in the context is the size of the result set. It varies per question
-and is not a fixed k. See [examples/rag_ollama.py](examples/rag_ollama.py).
+and is not a fixed k. See [examples/rag_ollama.py](https://github.com/miranpoor/glossdex/blob/main/examples/rag_ollama.py).
 
 ### Bring your own models and sources
 
@@ -216,7 +218,7 @@ and then tested, unchanged, on three others (see [Benchmark](#benchmark)). Pass 
 
 With another embedding model glossdex still works, but it labels its thresholds *uncalibrated*
 and they may cut too much or too little. Profiles for other models are on the roadmap. If you
-need one now, see [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md).
+need one now, see [COMMERCIAL-LICENSE.md](https://github.com/miranpoor/glossdex/blob/main/COMMERCIAL-LICENSE.md).
 
 ## Limitations
 
@@ -253,7 +255,7 @@ glossdex shows nothing for 96–100% of the questions a collection cannot answer
 threshold chosen on the same development collections also does, but only by showing nothing for
 8.5–72% of the questions that do have answers (glossdex: 0.6–22%). glossdex ranks as well as
 dense retrieval. The protocol, every table, per-query results and the scripts to reproduce
-them are in [benchmarks/beir](benchmarks/beir).
+them are in [benchmarks/beir](https://github.com/miranpoor/glossdex/tree/main/benchmarks/beir).
 
 ## Used in
 
@@ -263,17 +265,17 @@ photographed documents for Android (in closed testing on Google Play), built on 
 ## License
 
 glossdex is free software under the **GNU Affero General Public License v3.0**
-([LICENSE](LICENSE)). You can use, study, change and share it, including in open-source
+([LICENSE](https://github.com/miranpoor/glossdex/blob/main/LICENSE)). You can use, study, change and share it, including in open-source
 products and services that are also AGPL. To embed glossdex in a closed-source product or
-service, a **commercial license** is available: see [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md).
+service, a **commercial license** is available: see [COMMERCIAL-LICENSE.md](https://github.com/miranpoor/glossdex/blob/main/COMMERCIAL-LICENSE.md).
 
 **Patent pending.** The evidence-gated result-set method implemented here is the subject of
-U.S. Provisional Patent Application No. 64/172,444. See [PATENTS.md](PATENTS.md) for what the
+U.S. Provisional Patent Application No. 64/172,444. See [PATENTS.md](https://github.com/miranpoor/glossdex/blob/main/PATENTS.md) for what the
 open-source license grants.
 
 ## Citing
 
-If you use glossdex in research, please cite it (see [CITATION.cff](CITATION.cff)):
+If you use glossdex in research, please cite it (see [CITATION.cff](https://github.com/miranpoor/glossdex/blob/main/CITATION.cff)):
 
 ```bibtex
 @software{iranpour_glossdex,
@@ -281,6 +283,7 @@ If you use glossdex in research, please cite it (see [CITATION.cff](CITATION.cff
   title   = {glossdex: evidence-gated semantic search over locally generated descriptions},
   year    = {2026},
   version = {0.1.0},
+  doi     = {10.5281/zenodo.23269314},
   url     = {https://github.com/miranpoor/glossdex}
 }
 ```
