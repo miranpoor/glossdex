@@ -257,6 +257,10 @@ open-source license grants.
 
 ## Citing
 
+The method and its evaluation are described in the paper
+
+> Mehran Iranpour. *Knowing How Many to Show: Training-Free, Evidence-Gated Result Sets for Semantic Search over Any Content, from Text Collections to On-Device Media.* Zenodo, 2026. [doi:10.5281/zenodo.23270663](https://doi.org/10.5281/zenodo.23270663)
+
 If you use glossdex in research, please cite it (see [CITATION.cff](https://github.com/miranpoor/glossdex/blob/main/CITATION.cff)):
 
 ```bibtex
