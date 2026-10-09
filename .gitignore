@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+dist/
+*.egg-info/
+.glossdex/
+examples/sample-images/photos/
+examples/sample-images/ATTRIBUTION.md
+
+# benchmarks/beir: downloaded BEIR collections and embeddings (rebuilt by the scripts)
+benchmarks/beir/data/
+benchmarks/beir/cache/
+benchmarks/beir/logs/

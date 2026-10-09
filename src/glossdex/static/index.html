@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>glossdex</title>
+<style>
+:root {
+  --bg: #f7f7f5; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6b66; --line: #e4e3df;
+  --accent: #2f5bea; --accent-soft: #e8eeff; --ok: #1f8a4c; --no: #b8432f; --warn: #a86a00;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141414; --panel: #1d1d1c; --ink: #ecebe7; --muted: #9b9a94; --line: #2e2e2c;
+    --accent: #7c9bff; --accent-soft: #232b45; --ok: #5cc98a; --no: #f08a76; --warn: #e0a640;
+    --shadow: none;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 60px; }
+header { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between; }
+.brand { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+.brand span { color: var(--accent); }
+.tagline { color: var(--muted); margin-left: 10px; font-size: 14px; }
+.stats { color: var(--muted); font-size: 13px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+button { font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button:disabled { opacity: .5; cursor: default; }
+.progress { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; width: 160px; }
+.progress > div { height: 100%; background: var(--accent); width: 0; transition: width .3s; }
+form.search { display: flex; gap: 8px; margin: 22px 0 12px; }
+form.search input { flex: 1; min-width: 0; font: inherit; font-size: 17px; padding: 11px 14px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--ink); }
+form.search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.controls { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; color: var(--muted); font-size: 13px; }
+.controls label { display: flex; gap: 8px; align-items: center; }
+.controls input[type=range] { width: 180px; accent-color: var(--accent); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; margin-top: 18px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+.cols { display: grid; gap: 16px; }
+.cols.two { grid-template-columns: 1fr 1fr; }
+@media (max-width: 700px) { .cols.two { grid-template-columns: 1fr; } }
+.col h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  box-shadow: var(--shadow); cursor: pointer; display: flex; flex-direction: column; }
+.card:hover { border-color: var(--accent); }
+.card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: var(--line); }
+.card .doc { padding: 10px 12px 0; font-size: 13px; color: var(--ink); max-height: 132px; overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; }
+.card .meta { padding: 8px 12px 10px; font-size: 12px; color: var(--muted); }
+.card .title { color: var(--ink); font-weight: 600; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card .matched { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.badge { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 99px; margin-left: 4px;
+  background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.badge.pad { background: transparent; border: 1px solid var(--warn); color: var(--warn); }
+.empty { background: var(--panel); border: 1px dashed var(--line); border-radius: 12px; padding: 36px 20px; text-align: center; }
+.empty .big { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+.empty p { color: var(--muted); margin: 0; }
+aside { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; align-self: start; box-shadow: var(--shadow); }
+aside h2 { font-size: 14px; margin: 0 0 10px; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; padding: 7px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.steps li:first-child { border-top: 0; }
+.steps .ic { font-weight: 700; text-align: center; }
+.steps .ok { color: var(--ok); } .steps .no { color: var(--no); } .steps .na { color: var(--muted); } .steps .act { color: var(--accent); }
+.steps b { font-weight: 600; }
+.steps small { color: var(--muted); display: block; }
+.verdict { margin-top: 10px; font-size: 13px; padding: 10px; border-radius: 8px; background: var(--accent-soft); }
+.terms { margin-top: 10px; font-size: 12px; color: var(--muted); }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+.intro { color: var(--muted); max-width: 640px; }
+dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--ink);
+  max-width: min(760px, calc(100vw - 32px)); width: 100%; padding: 0; }
+dialog::backdrop { background: rgba(0,0,0,.45); }
+dialog .inner { padding: 18px 20px; max-height: 80vh; overflow: auto; }
+dialog img { max-width: 100%; border-radius: 8px; display: block; margin-bottom: 12px; }
+dialog ul { padding-left: 18px; }
+dialog pre { white-space: pre-wrap; background: var(--bg); padding: 10px; border-radius: 8px; font-size: 12.5px; }
+.close { float: right; }
+.err { color: var(--no); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><span class="brand">gloss<span>dex</span></span><span class="tagline">glossed locally, indexed by meaning, gated by evidence</span></div>
+    <div class="stats">
+      <span id="stats">…</span>
+      <div class="progress" id="progbox" hidden><div id="prog"></div></div>
+      <button id="indexBtn" title="Describe and embed new or changed files">Index folder</button>
+    </div>
+  </header>
+
+  <form class="search" id="form">
+    <input id="q" placeholder="Search by meaning, e.g. “a child holding a balloon” or “June electricity bill”" autocomplete="off" autofocus>
+    <button class="primary" type="submit">Search</button>
+  </form>
+  <div class="controls">
+    <label>More results
+      <input type="range" id="s" min="0" max="0.95" step="0.05" value="0.7">
+      Stricter <span class="mono" id="sv">0.70</span></label>
+    <label><input type="checkbox" id="cmp"> Compare with a fixed top-10</label>
+  </div>
+
+  <div class="layout">
+    <main id="results">
+      <p class="intro">Every file in this folder has a <b>gloss</b>: a list of short phrases a local model wrote about it.
+      Search matches your words against those phrases by meaning. Then glossdex decides <b>how many</b> results the evidence
+      supports, and that can be none. Nothing leaves this computer.</p>
+    </main>
+    <aside id="why" hidden>
+      <h2>Why these results</h2>
+      <ul class="steps" id="steps"></ul>
+      <div class="verdict" id="verdict"></div>
+      <div class="terms" id="terms"></div>
+    </aside>
+  </div>
+</div>
+
+<dialog id="dlg"><div class="inner" id="dlgBody"></div></dialog>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const f3 = (x) => (x == null ? "–" : Number(x).toFixed(3));
+
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  const j = await r.json();
+  if (!r.ok || j.error) throw new Error(j.error || r.statusText);
+  return j;
+}
+
+let polling = null;
+async function refreshStats() {
+  try {
+    const s = await api("/api/stats");
+    const p = s.progress;
+    $("stats").textContent = `${s.items} items indexed · ${s.embedder}` + (s.calibrated ? "" : " (uncalibrated)");
+    $("progbox").hidden = !p.running;
+    $("indexBtn").disabled = p.running;
+    $("indexBtn").textContent = p.running ? `Indexing ${p.done}/${p.total}` : "Index folder";
+    $("prog").style.width = p.total ? (100 * p.done / p.total) + "%" : "0";
+    if (p.running && !polling) polling = setInterval(refreshStats, 1500);
+    if (!p.running && polling) {
+      clearInterval(polling); polling = null;
+      if (s.last && s.last.error) alert("Indexing failed: " + s.last.error);
+    }
+  } catch (e) { $("stats").textContent = "server not reachable"; }
+}
+
+$("indexBtn").onclick = async () => {
+  await api("/api/index", {method: "POST"});
+  setTimeout(refreshStats, 300);
+};
+
+$("s").oninput = () => { $("sv").textContent = Number($("s").value).toFixed(2); };
+$("s").onchange = () => { if ($("q").value.trim()) run(); };
+$("cmp").onchange = () => { if ($("q").value.trim()) run(); };
+$("form").onsubmit = (e) => { e.preventDefault(); run(); };
+
+function card(h) {
+  const pad = h.reason === "pad" ? `<span class="badge pad" title="Added because the list was short: it shares query words and scored close to the best match">near miss</span>` : "";
+  const media = h.kind === "image"
+    ? `<img loading="lazy" src="/api/thumb?id=${h.id}" alt="">`
+    : `<div class="doc">${esc(h.text.slice(0, 400))}</div>`;
+  return `<div class="card" data-id="${h.id}">${media}
+    <div class="meta"><div class="title" title="${esc(h.title)}">${esc(h.title)}</div>
+    <div>match ${f3(h.semantic)}${h.coverage > 0 ? ` · words ${Math.round(h.coverage * 100)}%` : ""}${pad}</div>
+    <div class="matched">“${esc(h.matched)}”</div></div></div>`;
+}
+
+function column(title, res, empty) {
+  const body = res.hits.length
+    ? `<div class="grid">${res.hits.map(card).join("")}</div>`
+    : `<div class="empty"><div class="big">Nothing found</div><p>${esc(empty)}</p></div>`;
+  return `<div class="col">${title ? `<h3>${esc(title)}</h3>` : ""}${body}</div>`;
+}
+
+function steps(t) {
+  if (t.top == null) return `<li><span class="ic na">·</span><span>${esc(t.verdict)}</span></li>`;
+  const li = (cls, ic, head, sub) => `<li><span class="ic ${cls}">${ic}</span><span><b>${head}</b><small>${sub}</small></span></li>`;
+  const out = [];
+  out.push(li(t.passed_floor ? "ok" : "no", t.passed_floor ? "✓" : "✕", "Noise floor",
+    `best match ${f3(t.top)} ${t.passed_floor ? "≥" : "<"} ${f3(t.noise_floor)}`));
+  if (t.passed_floor) {
+    if (t.passed_gate == null) out.push(li("na", "–", "Evidence gate", "off at this strictness"));
+    else out.push(li(t.passed_gate ? "ok" : "no", t.passed_gate ? "✓" : "✕", "Evidence gate",
+      `${f3(t.top)} + keyword evidence ${f3(t.gate_bonus)} ${t.passed_gate ? "≥" : "<"} ${f3(t.gate_threshold)}`));
+  }
+  if (t.band_threshold != null) {
+    out.push(li("ok", "✓", "Band", `${t.band_count} item(s) scored ≥ ${f3(t.band_threshold)}`));
+    if (t.tightened_frac != null) out.push(li("act", "↓", "Coverage gap",
+      t.vocabulary_absent ? `no item shares a query word: band raised to ${f3(t.tightened_threshold)}`
+        : `one item covers the query best (gap ${Number(t.coverage_gap).toFixed(2)}): band raised to ${f3(t.tightened_threshold)}`));
+    else out.push(li("na", "–", "Coverage gap", t.coverage_gap == null ? "not needed" : `several items tie (gap ${Number(t.coverage_gap).toFixed(2)}): band unchanged`));
+    out.push(li(t.padded ? "act" : "na", t.padded ? "+" : "–", "Padding",
+      t.padded ? `${t.padded} near miss(es) added` : "none needed or none qualified"));
+  }
+  return out.join("");
+}
+
+let lastResults = {};
+async function run() {
+  const q = $("q").value.trim();
+  if (!q) return;
+  const s = $("s").value;
+  $("results").innerHTML = `<p class="intro">Searching…</p>`;
+  try {
+    const main = await api(`/api/search?q=${encodeURIComponent(q)}&s=${s}`);
+    let html;
+    if ($("cmp").checked) {
+      const base = await api(`/api/search?q=${encodeURIComponent(q)}&k=10`);
+      html = `<div class="cols two">${column("glossdex · " + main.hits.length + " shown", main,
+        "Nothing in this folder matches. glossdex shows nothing rather than guessing.")}${column("fixed top-10 · what most search shows", base, "The folder is empty.")}</div>`;
+      lastResults = Object.fromEntries([...main.hits, ...base.hits].map(h => [h.id, h]));
+    } else {
+      html = column("", main, `Nothing in this folder matches “${q}”. glossdex shows nothing rather than guessing. Move the slider toward “More results” to see the closest items anyway.`);
+      lastResults = Object.fromEntries(main.hits.map(h => [h.id, h]));
+    }
+    $("results").innerHTML = html;
+    const t = main.trace;
+    $("why").hidden = false;
+    $("steps").innerHTML = steps(t);
+    $("verdict").textContent = t.verdict;
+    $("terms").innerHTML = t.query_terms && t.query_terms.length
+      ? `Content words: ${t.query_terms.map(esc).join(", ")} · ${(main.seconds * 1000).toFixed(0)} ms`
+      : "";
+  } catch (e) {
+    $("results").innerHTML = `<p class="err">${esc(e.message)}</p>`;
+  }
+}
+
+$("results").onclick = async (e) => {
+  const c = e.target.closest(".card");
+  if (!c) return;
+  const it = await api(`/api/item?id=${c.dataset.id}`);
+  const h = lastResults[it.id] || {};
+  $("dlgBody").innerHTML = `<button class="close" onclick="document.getElementById('dlg').close()">Close</button>
+    <h3 style="margin-top:0">${esc(it.title)}</h3>
+    ${it.kind === "image" ? `<img src="/api/thumb?id=${it.id}&size=1200" alt="">` : `<pre>${esc(it.text)}</pre>`}
+    <div class="mono">score ${f3(h.score)} · semantic ${f3(h.semantic)} · keyword coverage ${f3(h.coverage)}</div>
+    <h4>Gloss <small style="color:var(--muted);font-weight:400">written by ${esc(it.model)} in ${Number(it.seconds).toFixed(1)}s</small></h4>
+    <ul>${it.phrases.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+    <div class="mono" style="color:var(--muted)">${esc(it.path)}</div>`;
+  $("dlg").showModal();
+};
+
+refreshStats();
+
+// A search can be linked: /?q=a+cat&s=0.7&cmp=1
+const params = new URLSearchParams(location.search);
+if (params.get("q")) {
+  $("q").value = params.get("q");
+  if (params.get("s")) { $("s").value = params.get("s"); $("s").oninput(); }
+  $("cmp").checked = params.get("cmp") === "1";
+  run();
+}
+</script>
+</body>
+</html>

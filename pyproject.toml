@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "glossdex"
+version = "0.1.0"
+description = "Glossed locally, indexed by meaning, gated by evidence: private semantic search over images and documents that shows only what the evidence supports."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Mehran Iranpour", email = "mehran@memoyad.com" }]
+keywords = ["semantic search", "retrieval", "rag", "on-device", "local-first", "embeddings",
+            "vision language model", "ollama", "privacy", "adaptive cutoff"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Text Processing :: Indexing",
+]
+dependencies = ["numpy>=1.22", "pillow>=9.0"]
+
+[project.optional-dependencies]
+pdf = ["pypdf>=4.0"]
+st = ["sentence-transformers>=5.0"]
+dev = ["pytest>=7", "pypdf>=4.0"]
+
+[project.scripts]
+glossdex = "glossdex.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/miranpoor/glossdex"
+Issues = "https://github.com/miranpoor/glossdex/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/glossdex"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/glossdex", "tests", "examples", "docs", "README.md", "LICENSE",
+           "COMMERCIAL-LICENSE.md", "PATENTS.md", "CITATION.cff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

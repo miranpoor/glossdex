@@ -1,0 +1,243 @@
+{
+ "fields": {
+  "noise_floor": 0.28,
+  "gate": 0.52,
+  "frac": 0.9,
+  "headroom": 0.3,
+  "min_results": 1
+ },
+ "frozen_utc": "2026-10-04T17:01:19Z",
+ "dev_queries_sha256": "93ae1ace08a831bc8c6077ff8503eac3958cade5ac49f35cae310fa67d91d93e",
+ "dev": {
+  "scidocs": "test",
+  "arguana": "test",
+  "webmasters": "test"
+ },
+ "probes": {
+  "scidocs": "arguana",
+  "arguana": "webmasters",
+  "webmasters": "arguana"
+ },
+ "objective": "mean over collections of task score (F2 answerable, 1/0 probes)",
+ "dev_task_text": 0.3522285102384548,
+ "dev_task_shipped": 0.20709854246392914,
+ "grid": {
+  "noise_floor": [
+   0.2,
+   0.24,
+   0.28,
+   0.32
+  ],
+  "gate": [
+   0.32,
+   0.36,
+   0.4,
+   0.44,
+   0.48,
+   0.52,
+   0.56,
+   0.6
+  ],
+  "frac": [
+   0.6,
+   0.7,
+   0.8,
+   0.9
+  ],
+  "headroom": [
+   0.2,
+   0.3,
+   0.4
+  ],
+  "min_results": [
+   1,
+   2
+  ]
+ },
+ "dev_detail": {
+  "text": {
+   "scidocs": {
+    "task": 0.17485998961856683,
+    "recall": 0.14761666666666667,
+    "precision": 0.19308324902325857,
+    "F2": 0.13460298909949517,
+    "wrong": 6.951,
+    "shown": 7.68,
+    "rejected": 0.98,
+    "nDCG@10": 0.19735530183117803,
+    "R@10": 0.20721666666666666,
+    "n_answerable": 1000,
+    "n_probes": 50
+   },
+   "arguana": {
+    "task": 0.4992029574752218,
+    "recall": 0.6366880799428979,
+    "precision": 0.33348746579871547,
+    "F2": 0.4813301151295838,
+    "wrong": 2.315488936473947,
+    "shown": 2.952177016416845,
+    "rejected": 1.0,
+    "nDCG@10": 0.6574719870565559,
+    "R@10": 0.9107780157030693,
+    "n_answerable": 1401,
+    "n_probes": 50
+   },
+   "webmasters": {
+    "task": 0.3826225836215758,
+    "recall": 0.48820393187766864,
+    "precision": 0.237192240683695,
+    "F2": 0.32161691006639553,
+    "wrong": 8.276679841897232,
+    "shown": 8.964426877470355,
+    "rejected": 1.0,
+    "nDCG@10": 0.44004327754248296,
+    "R@10": 0.5654599392595434,
+    "n_answerable": 506,
+    "n_probes": 50
+   }
+  },
+  "shipped": {
+   "scidocs": {
+    "task": 0.1617392683693952,
+    "recall": 0.34081666666666666,
+    "precision": 0.05665914910169847,
+    "F2": 0.14382623178786497,
+    "wrong": 42.439,
+    "shown": 44.119,
+    "rejected": 0.52,
+    "nDCG@10": 0.19735530183117803,
+    "R@10": 0.20721666666666666,
+    "n_answerable": 1000,
+    "n_probes": 50
+   },
+   "arguana": {
+    "task": 0.25077541754154037,
+    "recall": 0.8965024982155603,
+    "precision": 0.07129298952323551,
+    "F2": 0.23759823758228057,
+    "wrong": 18.812276945039258,
+    "shown": 19.70877944325482,
+    "rejected": 0.62,
+    "nDCG@10": 0.6574719870565559,
+    "R@10": 0.9107780157030693,
+    "n_answerable": 1401,
+    "n_probes": 50
+   },
+   "webmasters": {
+    "task": 0.20878094148085188,
+    "recall": 0.7173143495778131,
+    "precision": 0.051922166187277186,
+    "F2": 0.14640751672599536,
+    "wrong": 41.42094861660079,
+    "shown": 42.705533596837945,
+    "rejected": 0.84,
+    "nDCG@10": 0.44004327754248296,
+    "R@10": 0.5654599392595434,
+    "n_answerable": 506,
+    "n_probes": 50
+   }
+  }
+ },
+ "top10": [
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.28,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.3,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.32,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.3,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.24,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.3,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.28,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.2,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.28,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.4,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.2,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.3,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.32,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.2,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.32,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.4,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.24,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.2,
+    "min_results": 1
+   }
+  ],
+  [
+   0.3522285102384548,
+   {
+    "noise_floor": 0.24,
+    "gate": 0.52,
+    "frac": 0.9,
+    "headroom": 0.4,
+    "min_results": 1
+   }
+  ]
+ ]
+}

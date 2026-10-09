@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use glossdex, please cite it as below."
+title: "glossdex: evidence-gated semantic search over locally generated descriptions"
+type: software
+authors:
+  - family-names: Iranpour
+    given-names: Mehran
+    affiliation: Independent researcher
+    email: mehran@memoyad.com
+    orcid: "https://orcid.org/0009-0008-2089-6509"
+version: 0.1.0
+license: AGPL-3.0-or-later
+repository-code: "https://github.com/miranpoor/glossdex"
+keywords:
+  - semantic search
+  - retrieval
+  - adaptive cutoff
+  - retrieval-augmented generation
+  - on-device AI
