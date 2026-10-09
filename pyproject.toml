@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "glossdex"
-version = "0.1.0"
+version = "0.1.1"
 description = "Glossed locally, indexed by meaning, gated by evidence: private semantic search over images and documents that shows only what the evidence supports."
 readme = "README.md"
 requires-python = ">=3.9"

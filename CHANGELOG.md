@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1
+
+Documentation only; no change to the code or the results.
+
+- README renders the same on PyPI as on GitHub: the "How it works" diagram is an image
+  (`docs/how-it-works.png`, source `docs/how-it-works.mmd`) and every link is absolute.
+- Zenodo DOI, project URLs and contact details added.
+
 ## 0.1.0
 
 First public release.

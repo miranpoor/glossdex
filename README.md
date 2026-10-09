@@ -86,27 +86,9 @@ The index lives in a `.glossdex/` folder inside the folder you index. Install
 
 ## How it works
 
-```mermaid
-flowchart LR
-  subgraph Indexing
-    A[file] --> B[local model writes a gloss<br/>one element per line]
-    B --> C[phrase parser]
-    C --> D[embed whole gloss<br/>+ every phrase]
-    D --> E[(multi-vector index<br/>+ keyword index)]
-  end
-  subgraph Query
-    Q[query] --> R[score: whole gloss blended with<br/>soft-max over phrases, plus capped<br/>keyword-coverage boost]
-    E --> R
-    R --> G1{noise floor}
-    G1 -- too weak --> N[nothing]
-    G1 --> G2{evidence gate}
-    G2 -- uncorroborated --> N
-    G2 --> BAND[band anchored at the noise floor]
-    BAND --> GAP[tighten if one item clearly<br/>answers the query]
-    GAP --> PAD[pad short lists only with<br/>near misses sharing query words]
-    PAD --> S[result set]
-  end
-```
+<p align="center"><img src="https://raw.githubusercontent.com/miranpoor/glossdex/main/docs/how-it-works.png" width="520" alt="Indexing: file, local model writes a gloss, phrase parser, embed whole gloss and every phrase, multi-vector and keyword index. Query: score, noise floor, evidence gate, band anchored at the noise floor, tighten if one item clearly answers, pad short lists with near misses, result set."></p>
+
+<sub>Diagram source: [docs/how-it-works.mmd](https://github.com/miranpoor/glossdex/blob/main/docs/how-it-works.mmd).</sub>
 
 1. **Gloss.** A vision-language model (for photos) or a language model (for documents) lists
    the item's elements as short, independent phrases. Single-concept queries match one phrase
