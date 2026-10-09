@@ -18,6 +18,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.23269315
     description: Version 0.1.0
+  - type: doi
+    value: 10.5281/zenodo.23269624
+    description: Version 0.1.1
 license: AGPL-3.0-or-later
 repository-code: "https://github.com/miranpoor/glossdex"
 keywords:
