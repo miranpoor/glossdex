@@ -242,7 +242,7 @@ them are in [benchmarks/beir](https://github.com/miranpoor/glossdex/tree/main/be
 ## Used in
 
 **[Memoyad](https://memoyad.com)**: private, fully on-device search over photos, screenshots and
-photographed documents for Android (in closed testing on Google Play), built on the same method.
+photographed documents for Android, [on Google Play](https://play.google.com/store/apps/details?id=com.tibaf.memoyad), built on the same method.
 
 ## License
 
