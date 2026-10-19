@@ -242,7 +242,8 @@ them are in [benchmarks/beir](https://github.com/miranpoor/glossdex/tree/main/be
 ## Used in
 
 **[Memoyad](https://memoyad.com)**: private, fully on-device search over photos, screenshots and
-photographed documents for Android, [on Google Play](https://play.google.com/store/apps/details?id=com.tibaf.memoyad), built on the same method.
+photographed documents for Android, [on Google Play](https://play.google.com/store/apps/details?id=com.tibaf.memoyad), built on the same method:
+the glosses are written on the phone by a vision model, and search works with no network at all. Free, Android 12 and newer.
 
 ## License
 
